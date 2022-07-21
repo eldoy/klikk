@@ -11,7 +11,7 @@ const puppeteer = require('puppeteer')
  * @prop {string} [dir] - The directory where the file is stored on disk. Defaults to os.tmpdir()
  * @prop {string} [name] - The name of the stored file. Default is a random name.
  */
-async function klikk(options = {}) {
+async function klikk(options = {}, config = {}) {
   const {
     url,
     name = `${cuid()}.png`,
@@ -20,8 +20,10 @@ async function klikk(options = {}) {
 
   const path = fspath.join(dir, name)
 
-  // Launch browser and page
-  const browser = await puppeteer.launch()
+  // Launch browser
+  const browser = await puppeteer.launch(config)
+
+  // Create a new page
   const page = await browser.newPage()
 
   // Go to page and wait until idle
