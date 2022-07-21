@@ -20,12 +20,14 @@ async function klikk(options = {}) {
 
   const path = fspath.join(dir, name)
 
-  // Launch browser
+  // Launch browser and page
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
 
+  // Go to page and wait until idle
+  await page.goto(url, { 'waitUntil': 'networkidle0' })
+
   // Take screen shot
-  await page.goto(url)
   await page.screenshot({ path })
 
   // Close browser
