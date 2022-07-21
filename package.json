@@ -1,6 +1,6 @@
 {
   "name": "klikk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Take a screen shot of any web site URL",
   "main": "index.js",
   "scripts": {
