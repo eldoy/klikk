@@ -27,7 +27,7 @@ async function klikk(options = {}, config = {}) {
   const page = await browser.newPage()
 
   // Go to page and wait until idle
-  await page.goto(url, { 'waitUntil': 'networkidle0' })
+  await page.goto(url, { waitUntil: 'networkidle2', timeout: 15000 })
 
   // Take screen shot
   await page.screenshot({ path })
