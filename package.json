@@ -1,0 +1,19 @@
+{
+  "name": "klikk",
+  "version": "0.1.0",
+  "description": "Take a screen shot of any web site URL",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/klikk.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eldoy/klikk"
+  },
+  "author": "Vidar Eldøy <vidar@eldoy.com>",
+  "license": "MIT",
+  "dependencies": {
+    "cuid": "^2.1.8",
+    "puppeteer": "^15.4.1"
+  }
+}
