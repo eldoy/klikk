@@ -12,11 +12,15 @@ const puppeteer = require('puppeteer')
  * @prop {string} [name] - The name of the stored file. Default is a random name.
  */
 async function klikk(options = {}, config = {}) {
-  const {
+  let {
     url,
     name = `${cuid()}.png`,
     dir = os.tmpdir()
   } = options
+
+  if (!url.startsWith('http')) {
+    url = `https://${url}`
+  }
 
   const path = fspath.join(dir, name)
 
