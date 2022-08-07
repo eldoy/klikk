@@ -12,11 +12,7 @@ const puppeteer = require('puppeteer')
  * @prop {string} [name] - The name of the stored file. Default is a random name.
  */
 async function klikk(options = {}, config = {}) {
-  let {
-    url,
-    name = `${cuid()}.png`,
-    dir = os.tmpdir()
-  } = options
+  let { url, name = `${cuid()}.png`, dir = os.tmpdir() } = options
 
   if (!url.startsWith('http')) {
     url = `https://${url}`
@@ -31,10 +27,13 @@ async function klikk(options = {}, config = {}) {
   const page = await browser.newPage()
 
   // Go to page and wait until idle
-  await page.goto(url, { waitUntil: 'networkidle2', timeout: 15000 })
+  await page.goto(url, { waitUntil: 'networkidle2', timeout: 10000 })
 
   // Take screen shot
   await page.screenshot({ path })
+
+  // Close page
+  await page.close()
 
   // Close browser
   await browser.close()
