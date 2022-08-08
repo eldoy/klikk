@@ -39,7 +39,7 @@ const options = {
  * @type {object}
  */
 // Use this config for running puppeteer as root
-const config = { args: ['--no-sandbox'] }}
+const config = { args: ['--no-sandbox'] }
 
 /**
  * Returns a file object
