@@ -20,7 +20,6 @@ async function klikk(options = {}, config = {}) {
 
   const path = fspath.join(dir, name)
   const browser = await puppeteer.launch(config)
-  const subprocess = browser.process()
   const page = await browser.newPage()
 
   try {
@@ -31,7 +30,7 @@ async function klikk(options = {}, config = {}) {
   } catch (e) {
     console.error(e)
   } finally {
-    const pid = -subprocess.pid
+    const pid = -browser.process().pid
     try {
       process.kill(pid, 'SIGKILL')
     } catch (e) {}
