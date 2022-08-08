@@ -5,6 +5,7 @@ async function test() {
   const file = await klikk({
     url: 'https://eldoy.com'
   })
+  console.log(file)
   assert.ok(!!file.name)
 }
 

@@ -22,21 +22,33 @@ async function klikk(options = {}, config = {}) {
 
   // Launch browser
   const browser = await puppeteer.launch(config)
+  const subprocess = browser.process()
 
   // Create a new page
   const page = await browser.newPage()
 
-  // Go to page and wait until idle
-  await page.goto(url, { waitUntil: 'networkidle2', timeout: 10000 })
+  try {
+    // Go to page and wait until idle
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 10000 })
 
-  // Take screen shot
-  await page.screenshot({ path })
+    // Take screen shot
+    await page.screenshot({ path })
 
-  // Close page
-  await page.close()
+    // Close page
+    await page.close()
 
-  // Close browser
-  await browser.close()
+    // Close browser
+    await browser.close()
+  } catch (e) {
+    console.error(e)
+  } finally {
+    const pid = -subprocess.pid
+    try {
+      process.kill(pid, 'SIGKILL')
+    } catch (e) {
+      console.error(e)
+    }
+  }
 
   // Return file
   const { size } = fs.statSync(path)
